@@ -10,7 +10,6 @@ import {
   FileText,
   Search,
   ShieldCheck,
-  Sparkles,
   UploadCloud,
 } from "lucide-react";
 
@@ -29,14 +28,6 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<ScanResult | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
-
-  const applyPreset = (type: "fullstack" | "backend") => {
-    setJobDescription(
-      type === "fullstack"
-        ? "Dibutuhkan Full Stack Developer yang mahir menggunakan TypeScript, Next.js, React, Tailwind CSS, PostgreSQL, Git, dan Docker. Memiliki pemahaman REST API dan metodologi Agile."
-        : "Dibutuhkan Backend Engineer menguasai Python, FastAPI atau Laravel, MySQL/PostgreSQL, Redis, Microservices, OAuth, dan Unit Testing. Terbiasa dengan CI/CD dan Linux server.",
-    );
-  };
 
   const handleScan = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -102,32 +93,24 @@ export default function Home() {
                 />
               </div>
               <div className="min-w-0">
-                <p className="mb-1 text-[10px] uppercase tracking-[0.22em] text-teal-300/70">
-                  Career Intelligence
-                </p>
                 <h1 className="flex items-center gap-2 text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
                   Fit<span className="text-teal-300">CV</span>
                 </h1>
                 <p className="max-w-xl text-xs leading-relaxed text-slate-400 sm:text-sm">
-                  Analisis kecocokan CV dengan kebutuhan posisi secara cerdas
-                  dan terukur.
+                  Cek kecocokan CV dengan lowongan kerja.
                 </p>
               </div>
             </div>
           </header>
 
-          <div className="mb-8 max-w-3xl">
-            <p className="mb-3 flex items-center gap-2 text-sm font-medium text-teal-300">
-              <Sparkles className="h-4 w-4" /> Resume intelligence berbasis AI
-            </p>
+          <div className="mb-7 max-w-3xl">
             <h1 className="text-3xl font-semibold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
-              Buat CV Anda lebih{" "}
-              <span className="text-teal-300">relevan dan meyakinkan.</span>
+              Apakah CV Anda cocok dengan{" "}
+              <span className="text-teal-300">posisi yang dituju?</span>
             </h1>
-            <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400 sm:text-base">
-              Bandingkan CV dengan kebutuhan posisi yang Anda incar. Dapatkan
-              insight terukur untuk meningkatkan peluang lolos sistem ATS dan
-              menarik perhatian rekruter.
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-400 sm:text-base">
+              Unggah CV dan tempel deskripsi lowongan. FitCV akan menemukan
+              kompetensi yang cocok serta bagian yang perlu diperkuat.
             </p>
           </div>
 
@@ -136,14 +119,14 @@ export default function Home() {
               <div className="mb-5 flex items-start justify-between gap-4">
                 <div>
                   <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-teal-300">
-                    Langkah 01
+                    1. CV Anda
                   </p>
                   <h2 className="flex items-center gap-2 text-base font-semibold text-white">
                     <FileText className="h-4 w-4 text-teal-300" /> Unggah CV
                     Anda
                   </h2>
                   <p className="mt-1 text-xs leading-5 text-slate-500">
-                    Gunakan CV terbaru dalam format PDF untuk hasil terbaik.
+                    Unggah CV terbaru dalam format PDF.
                   </p>
                 </div>
                 <ShieldCheck className="h-5 w-5 shrink-0 text-slate-600" />
@@ -174,47 +157,33 @@ export default function Home() {
             <div className="rounded-2xl border border-white/9 bg-[#0d1424]/85 p-5 shadow-2xl shadow-black/10 sm:p-6">
               <div className="mb-5">
                 <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-teal-300">
-                  Langkah 02
+                  2. Lowongan yang dituju
                 </p>
                 <h2 className="flex items-center gap-2 text-base font-semibold text-white">
                   <BriefcaseBusiness className="h-4 w-4 text-teal-300" /> Target
                   posisi
                 </h2>
                 <p className="mt-1 text-xs leading-5 text-slate-500">
-                  Tempelkan deskripsi pekerjaan yang ingin Anda lamar.
+                  Tempelkan kualifikasi atau deskripsi pekerjaan di sini.
                 </p>
-              </div>
-              <div className="mb-3 flex flex-wrap gap-2">
-                <button
-                  type="button"
-                  onClick={() => applyPreset("fullstack")}
-                  className="cursor-pointer rounded-lg border border-white/8 bg-white/4 px-3 py-1.5 text-[11px] text-slate-300 transition hover:border-teal-400/30 hover:text-teal-200"
-                >
-                  Contoh Full Stack
-                </button>
-                <button
-                  type="button"
-                  onClick={() => applyPreset("backend")}
-                  className="cursor-pointer rounded-lg border border-white/8 bg-white/4 px-3 py-1.5 text-[11px] text-slate-300 transition hover:border-teal-400/30 hover:text-teal-200"
-                >
-                  Contoh Backend
-                </button>
               </div>
               <textarea
                 rows={6}
                 value={jobDescription}
                 onChange={(e) => setJobDescription(e.target.value)}
-                placeholder="Tempel deskripsi pekerjaan di sini..."
+                placeholder="Masukkan deskripsi atau kualifikasi pekerjaan yang dituju..."
                 className="w-full resize-none rounded-xl border border-slate-700 bg-[#090f1d]/80 p-3 text-sm leading-6 text-white outline-none transition placeholder:text-slate-600 focus:border-teal-400/60"
               />
-              <button
-                type="submit"
-                disabled={loading}
-                className="mt-4 flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-teal-300 py-3.5 text-sm font-bold text-slate-950 shadow-[0_0_24px_rgba(45,212,191,0.18)] transition hover:bg-teal-200 disabled:cursor-not-allowed disabled:opacity-50"
-              >
-                {loading ? "Sedang menganalisis..." : "Analisis kecocokan CV"}{" "}
-                {!loading && <ArrowRight className="h-4 w-4" />}
-              </button>
+              <div className="mt-4 flex justify-end">
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="flex w-fit cursor-pointer items-center justify-center gap-2 rounded-xl bg-teal-300 px-5 py-3.5 text-sm font-bold text-slate-950 shadow-[0_0_24px_rgba(45,212,191,0.18)] transition hover:bg-teal-200 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  {loading ? "Menganalisis CV..." : "Cek kecocokan CV"}{" "}
+                  {!loading && <ArrowRight className="h-4 w-4" />}
+                </button>
+              </div>
             </div>
           </form>
 
