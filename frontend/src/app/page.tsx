@@ -58,7 +58,8 @@ export default function Home() {
       formData.append("resume", file);
       formData.append("job_description", jobDescription);
 
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+      const rawUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+      const apiUrl = rawUrl.replace(/\/+$/, "");
       const response = await fetch(`${apiUrl}/api/scan`, {
         method: "POST",
         body: formData,

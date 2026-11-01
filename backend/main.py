@@ -26,8 +26,13 @@ allowed_origins = [
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=allowed_origins,
-    allow_credentials=True,
+    allow_origins=[
+        "https://fitcv-malik.vercel.app",
+        "http://localhost:3000",
+        "http://localhost:3001",
+        "*"
+    ],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
